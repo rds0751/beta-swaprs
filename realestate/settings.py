@@ -52,6 +52,11 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.messaging',
     'apps.social',
+    'shop',
+    'comments',
+    'log',
+    'news',
+    'registr',
 
 ]
 
