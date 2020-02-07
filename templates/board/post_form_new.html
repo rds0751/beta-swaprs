@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+  {% load static %}
+  {% load crispy_forms_tags %}
+  {% block content %}
+    <body id="page_3">
+
+  {% include 'partials/_navbar_user.html' %}
+  <header class="container">
+    <div class="row-cust">
+      <div class="col-cust-1">
+        <div id="step_1_picture" class="text-right" style="margin-top: 200px; margin-right: 26px;">
+          <picture>
+            <source srcset="/static/assets/imgs/Swaprs_shape01@3x.png" type="image/png">
+            <img width="186px" class="col-img  aos-animate" src="/static/assets/imgs/Swaprs_shape01@3x.png"
+              alt="Improve Your in-Store Experience">
+          </picture>
+        </div>
+      </div>
+      <div class="col-cust-2">
+        <h1 class="heading-primary">Add new item(s)</h1>
+        <p class="heading-info">Upload any item or service you wish to offer.
+          <br>
+          Add as many as you want.</p>
+        <form method="POST" action="/posts/new/">
+          {% csrf_token %}
+          <div class="row pl-3">
+            <div class="form-group-1">
+              <div class="group">
+                <input type="text" name="type" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Item or Service?</label>
+              </div>
+              <div class="group">
+                <select>
+                  <option default disabled selected value="">Select a Category</option>
+                  <option value="1">  Antiques and collectibles </option>
+          }
+<option value="2">  Appliances  </option>
+<option value="3">  Arts & crafts </option>
+<option value="4">  Baby & children </option>
+<option value="5">  Bags & luggage  </option>
+<option value="6">  Bicycles  </option>
+<option value="7">  Books, films & music  </option>
+<option value="8">  Car parts </option>
+<option value="9">  Electronics & computers </option>
+<option value="10">  Furniture </option>
+<option value="11">  Garage sale </option>
+<option value="12">  Garden  </option>
+<option value="13">  Health & beauty </option>
+<option value="14">  Household </option>
+<option value="15">  Mens Clothing & shoes </option>
+<option value="16">  Mobile phones </option>
+<option value="17">  Musical instruments </option>
+<option value="18">  Pet supplies  </option>
+<option value="19">  Property / housing  </option>
+<option value="20">  Sports & outdoors </option>
+<option value="21">  Tools </option>
+<option value="22">  Toys & games  </option>
+<option value="23">  Vehicles  </option>
+<option value="24">  Videogames  </option>
+<option value="25">  Wearables & accessories </option>
+<option value="26">  Women’s clothing & shoes  </option>
+<option value="27">  Services Categories </option>
+<option value="28">  Accounting help </option>
+<option value="29">  Assembling furniture  </option>
+<option value="30">  Audio help  </option>
+<option value="31">  Beauty  </option>
+<option value="32">  Bike riding </option>
+<option value="33">  Bridge lesson </option>
+<option value="34">  Business help </option>
+<option value="35">  Car parking </option>
+<option value="36">  Car repair  </option>
+<option value="37">  Car service / washing </option>
+<option value="38">  Carpooling trip </option>
+<option value="39">  Careers advice  </option>
+<option value="40">  Cell phone help </option>
+<option value="41">  Chess lesson  </option>
+<option value="42">  Cleaning  </option>
+<option value="43">  Clothing repairs  </option>
+<option value="44">  CMS </option>
+<option value="45">  Coding  </option>
+<option value="46">  Comedy entertainment  </option>
+                </select>
+                <label for="select" class="control-label"></label><i class="bar11"></i>
+              </div>
+              <div class="group">
+                <input type="text" name="input_title" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Title - What are you offering?</label>
+              </div>
+              <div class="group">
+                <input type="text" name="input_location" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Location</label>
+              </div>
+            </div>
+            <div class="form-group-2">
+              <div class="form-group">
+                <textarea type="text" rows="5" class="form-control" placeholder="Item Description" required></textarea>
+                <div class="d-flex justify-content-between">
+                  <div class="inline-block-card text-center p-2">
+                    <img src="/static/assets/imgs/plus.png" alt="Add item">
+                    <p class="text-center">Image</p>
+                    <input type="file" name="image1">
+                  </div>
+                  <div class="inline-block-card text-center p-2">
+                    <img src="/static/assets/imgs/plus.png" alt="Add item">
+                    <p class="text-center">Image</p>
+                    <input type="file" name="image2">
+                  </div>
+                  <div class="inline-block-card text-center p-2">
+                    <img src="/static/assets/imgs/plus.png" alt="Add item">
+                    <p class="text-center">Image</p>
+                    <input type="file" name="image3">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <button class="btn btn-scondary-cust" type="submit">Upload Item</button>
+          </div>
+        </form>
+        <div class="next-button text-left" style="width: 388px; margin: 120px 0 75px 0;">
+          <a class="btn btn-primary-cust" href="#">DONE</a>
+          <p class="upload-info text-center">You can always edit your items and wishes later</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+{% include 'partials/_footer.html' %}
+</body>
+  {% endblock %}

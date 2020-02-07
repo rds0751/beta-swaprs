@@ -8,50 +8,30 @@ from leaflet.forms.widgets import LeafletWidget
 
 from apps.board.models import Post
 
-# Form to handle the niput of images.
-class ImageHelper(FormHelper):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # self.layout = Layout(
-        #     'image'
-        # )
-        # TODO: Template for image view
-        self.template = 'bootstrap/table_inline_formset.html'
-        self.form_tag = False
-        self.disable_csrf = True
-
 # Post Input
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'body', 'tags', 'price', 'unit']
+        fields = ['title', 'body', 'unit_type', 'location', 'category', 'image1', 'image2', 'image3']
         widgets = {}
 
     # Appearance of the Form
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        self.helper = FormHelper(self)
-        self.helper.layout = layout.Layout(
-            layout.Fieldset(
-                '',
-                layout.Field('title', placeholder='A snappy title'),
-                'body',
-                'tags',
-                bootstrap.PrependedAppendedText('price', '$', 'USD'),
-                'unit'
-            ),
-            bootstrap.FormActions(
-                layout.Submit('submit', 'Create post', css_class='btn btn-success'),
-            )
-        )
-        self.helper.form_tag = False
-
+        self.fields['title'].widget.attrs['class'] = 'my_class'
+        self.fields['body'].widget.attrs['class'] = 'my_class'
+        self.fields['unit_type'].widget.attrs['class'] = 'my_class'
+        self.fields['location'].widget.attrs['class'] = 'my_class'
+        self.fields['category'].widget.attrs['class'] = 'my_class'
+        self.fields['image1'].widget.attrs['class'] = 'my_class'
+        self.fields['image2'].widget.attrs['class'] = 'my_class'
+        self.fields['image3'].widget.attrs['class'] = 'my_class'
+        
 
 class PostUpdateForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'body', 'tags', 'price', 'unit']
+        fields = ['title', 'body', 'unit_type', 'location', 'category']
         widgets = {}
 
     def __init__(self, *args, **kwargs):

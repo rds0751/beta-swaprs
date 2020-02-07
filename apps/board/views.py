@@ -12,33 +12,35 @@ from extra_views import (CreateWithInlinesView,
 from functools import reduce
 from itertools import chain
 from operator import and_, or_
-from apps.board.forms import (ImageHelper,
-                                     PostForm,
+from apps.board.forms import (PostForm,
                                      PostUpdateForm)
-from apps.board.models import (Post,
-                                      PostImage)
+from apps.board.models import (Post)
 from apps.core.mixins import (CreateWithOwnerMixin,
                                      OwnerRequiredMixin,
                                      SellerRequiredMixin)
 
 
-class ImagesInline(InlineFormSet):
-    model = PostImage
-    fields = ['image']
-    extra = 5
-    max_num = 5
-    # can_delete = False
-
 
 class PostCreateView(CreateWithOwnerMixin, SellerRequiredMixin, CreateWithInlinesView):
     model = Post
-    inlines = [ImagesInline]
     form_class = PostForm
     template_name = 'board/post_form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['image_helper'] = ImageHelper()
+        return context
+
+    def get_success_url(self):
+        messages.success(self.request, 'Post created!', extra_tags='fa fa-check')
+        return self.object.get_absolute_url()
+
+class PostCreateViewNew(CreateWithOwnerMixin, SellerRequiredMixin, CreateWithInlinesView):
+    model = Post
+    form_class = PostForm
+    template_name = 'board/post_form_new.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context
 
     def get_success_url(self):
@@ -141,7 +143,6 @@ class PostSearchView(ListView):
 
 class PostUpdateView(OwnerRequiredMixin, UpdateWithInlinesView):
     model = Post
-    inlines = [ImagesInline]
     form_class = PostUpdateForm
     template_name = 'board/post_update_form.html'
 

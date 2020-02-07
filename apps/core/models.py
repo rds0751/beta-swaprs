@@ -32,4 +32,4 @@ class UserProfile(RandomSlugModel):
         return True
 
     def __str__(self):
-        return self.name
+        return self.fname

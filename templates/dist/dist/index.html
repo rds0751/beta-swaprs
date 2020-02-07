@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Swaprs Front End Development</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f8f8;
+      padding: 10px 20px;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    div.project-title {
+      padding-top: 60px;
+      color: rgb(0, 42, 70);
+      font-weight: 500;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 20px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      text-align: center;
+      padding-bottom: 100px;
+    }
+
+    .card {
+      margin-top: 36px;
+      box-shadow: 0 24px 30px -30px rgba(0, 68, 255, 0.2);
+      display: inline-block;
+      position: relative;
+      border-radius: 5px;
+      transition: 0.35s ease-out all;
+    }
+
+    .overlay {
+      content: "";
+      border-radius: 5px;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      opacity: 0;
+      transition: 0.25s ease-out all;
+    }
+
+    .card-info {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -30%);
+      color: rgb(27, 27, 27);
+      font-size: 24px;
+      z-index: 3;
+      opacity: 0;
+      font-weight: 600;
+      transition: 0.35s ease-out all;
+    }
+
+    .card:hover {
+      box-shadow: 0 30px 30px -30px rgba(0, 68, 255, 0.2);
+    }
+
+    .card:hover .overlay,
+    .card:hover .card-info {
+      opacity: 1;
+    }
+
+    .card:hover .card-info {
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="project-title">
+      <span class="text-left">Swaprs Front End Project Pages Included</span>
+      <span class="text-right">Krupesh Anadkat</span>
+    </div>
+    <hr>
+    <div class="flex-container">
+      <a href="home.html">
+        <div class="card">
+          <img width="380" src="page-imgs/home.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Home Page</span>
+        </div>
+      </a>
+
+      <a href="page2.html">
+        <div class="card">
+          <img width="380" src="page-imgs/onboarding.PNG" alt="Onboarding page">
+          <span class="overlay"></span>
+          <span class="card-info">On-boarding</span>
+        </div>
+      </a>
+
+      <a href="page3.html">
+        <div class="card">
+          <img width="380" src="page-imgs/add_item_wish.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Add Item-Wish</span>
+        </div>
+      </a>
+
+      <a href="add_new_item.html">
+        <div class="card">
+          <img width="380" src="page-imgs/add_item.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Add New Item</span>
+        </div>
+      </a>
+
+      <a href="add_new_wishes.html">
+        <div class="card">
+          <img width="380" src="page-imgs/add_wish.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Add New Wish</span>
+        </div>
+      </a>
+
+      <a href="edit_item.html">
+        <div class="card">
+          <img width="380" src="page-imgs/edit_item.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Edit Item</span>
+        </div>
+      </a>
+
+      <a href="edit_wish.html">
+        <div class="card">
+          <img width="380" src="page-imgs/edit_wish.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Edit Item</span>
+        </div>
+      </a>
+
+      <a href="settings_preferences.html">
+        <div class="card">
+          <img width="380" src="page-imgs/settings_.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Settings & Preferences</span>
+        </div>
+      </a>
+
+      <a href="profile.html">
+        <div class="card">
+          <img width="380" src="page-imgs/profile.PNG" alt="Home page">
+          <span class="overlay"></span>
+          <span class="card-info">Profile</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</body>
+
+</html>

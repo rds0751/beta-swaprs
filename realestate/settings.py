@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.messaging',
     'apps.social',
+    'crispy_forms',
 
 ]
 
@@ -150,7 +151,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Logged in users redirected here if they view login/signup pages
-LOGIN_REDIRECT_URL = 'board:create'
+LOGIN_REDIRECT_URL = '/on-boarding'
 
 
 # DJANGO-ALLAUTH CONFIGURATION

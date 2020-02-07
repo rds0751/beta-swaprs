@@ -1,6 +1,7 @@
 
 from django.urls import path, include
 from apps.board.views import (PostCreateView,
+    PostCreateViewNew,
                                      PostDeleteView,
                                      PostDetailView,
                                      # PostListView,
@@ -11,7 +12,7 @@ from apps.board.views import (PostCreateView,
 app_name = 'board'
 urlpatterns = [
     path('', PostSearchView.as_view(), name='list'),
-    path('new/', PostCreateView.as_view(), name='create'),
+    path('new/', PostCreateViewNew.as_view(), name='createnew'),
     path('posts/', PostSearchView.as_view(), name='list'),
     path('posts/new/', PostCreateView.as_view(), name='create'),
     path('posts/(?P<slug>[-\w]+)/edit/', PostUpdateView.as_view(), name='update'),
