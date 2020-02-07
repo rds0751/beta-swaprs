@@ -53,7 +53,10 @@ INSTALLED_APPS = [
     'apps.messaging',
     'apps.social',
     'crispy_forms',
-
+    'shop',
+    'comments',
+    'log',
+    'news',
 ]
 
 SITE_ID = 1
@@ -100,6 +103,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -150,6 +154,28 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+SOCIALACCOUNT_PROVIDERS = \
+    {'facebook':
+       {'METHOD': 'oauth2',
+        'SCOPE': ['email','public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time'],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'kr_KR',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4'}}
+
 # Logged in users redirected here if they view login/signup pages
 LOGIN_REDIRECT_URL = '/on-boarding'
 
@@ -158,12 +184,12 @@ LOGIN_REDIRECT_URL = '/on-boarding'
 # ---
 INSTALLED_APPS += ['allauth',
                    'allauth.account',
-                   'allauth.socialaccount'
-                   # 'allauth.socialaccount.providers.google'
+                   'allauth.socialaccount',
+                   'allauth.socialaccount.providers.facebook'
                    ]
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_FORMS = {
