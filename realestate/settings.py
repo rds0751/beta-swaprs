@@ -48,15 +48,14 @@ INSTALLED_APPS = [
     'core1.apps.CoreConfig',
     'import_export',
     'marketing',
-    'apps.board',
-    'apps.core',
-    'apps.messaging',
-    'apps.social',
-    'crispy_forms',
     'shop',
     'comments',
     'log',
     'news',
+    'src.products',
+    'src.profiles',
+    'src.cart',
+
 ]
 
 SITE_ID = 1
@@ -192,12 +191,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_FORMS = {
-    'login': 'apps.core.forms.MarketLoginForm',
-    'signup': 'apps.core.forms.MarketSignupForm',
-}
-# We use a custom signup form but this is an integrated way to customize the behavior afterward
-ACCOUNT_SIGNUP_FORM_CLASS = 'apps.social.forms.UserProfileForm'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
 # Don't display the logout confirmation
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -255,3 +250,5 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+PROTECTED_UPLOADS =  os.path.join(os.path.dirname(BASE_DIR), "static", "protected")

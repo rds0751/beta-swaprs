@@ -15,5 +15,4 @@ urlpatterns = [
     re_path(r'^contacts/',contacts,name='contact'),
     re_path(r'^action/',action,name='action'),
 #    re_path(r'^setTrust/(?P<trust>\w+)/',setTrust,name='setTrust')
-
 ]

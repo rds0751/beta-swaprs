@@ -1,6 +1,6 @@
 {% extends "manage_shop/base.html" %}
 {% load i18n %}
-{% block innercontent %}
+{% block innercontent %} 
 
     <div class="add-prod-holder">
         <a href="{%  url add_product %}" class="addproduct btn btn-large btn btn-warning">{% trans "Добавить новый товар" %}</a>
@@ -8,12 +8,12 @@
     <div class="clear"></div>
     
     {% if products.object_list %}
-    <div class="artsearch">
+    <!-- <div class="artsearch">
         <form action="/" method="GET">
             <input type="text" name="search" placeholder="Поиск по товарам (название, штрих код и т.д.)">
             <button class="btn">Поиск</button>
         </form>
-    </div>
+    </div> -->
     <div class="quick-actions">
         <form action="{% url action %}" method="post" class="confirm" rel="{% trans "Уверены ?" %}">{% csrf_token %}
         <select name="action">

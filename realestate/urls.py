@@ -11,13 +11,9 @@ path('admin/', admin.site.urls),
 path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
 path('ckeditor/', include('ckeditor_uploader.urls')),
 
-# path('messaging/', include('apps.messaging.urls')),
-
-#     # Social app
-# path('', include('apps.social.urls')),
-
-#     # Board app
-path('shop/', include('shop.urls')),
+# path('lib/', src.profiles.views.library, name='library'),
+path('products/', include('src.products.urls')),
+path('cart/', include('src.cart.urls')),
 path('', include('comments.urls')),
 path('', include('log.urls')),
 path('', include('news.urls')),
