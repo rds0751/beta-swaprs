@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+    <body id="page_3">
 
-<head>
-  <meta charset="UTF-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Swaprs</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/main.min.css">
-</head>
-
-<body id="page_3">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-0">
-    <div class="container px-0">
-      <a class="navbar-brand p-0" href="#">
-        <picture>
-          <source srcset="./assets/imgs/SwaprsLogo_mid_2x.webp" type="image/webp">
-          <source srcset="./assets/imgs/SwaprsLogo_mid@2x.png" type="image/png">
-          <img height="60" class="col-img  aos-animate" src="./assets/imgs/SwaprsLogo_mid@2x.png"
-            alt="Improve Your in-Store Experience">
-        </picture>
-      </a>
-    </div>
-  </nav>
-
-  <header class="container">
+  {% include 'partials/_navbar_user.html' %}
+ <header class="container">
     <div class="row-cust">
       <div class="col-cust-1">
         <p class="progress-number">
@@ -34,8 +13,8 @@
         </p>
         <div id="step_1_picture" class="text-right">
           <picture>
-            <source srcset="./assets/imgs/Swaprs_shape01@3x.png" type="image/png">
-            <img width="186px" class="col-img  aos-animate" src="./assets/imgs/Swaprs_shape01@3x.png"
+            <source srcset="{% static '/assets/imgs/Swaprs_shape01@3x.png' %}" type="image/png">
+            <img width="186px" class="col-img  aos-animate" src={% static '/assets/imgs/Swaprs_shape01@3x.png' %}"
               alt="Improve Your in-Store Experience">
           </picture>
         </div>
@@ -46,16 +25,17 @@
           <br>
           Add as many as you want.</p>
         <form method="POST" action="#">
+          {% csrf_token %}
           <div class="row pl-3">
             <div class="form-group-1">
               <div class="group">
-                <input type="text" name="input_item" required>
+                <input type="text" name="input_item" required name="ty_pe">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Item or Service?</label>
               </div>
               <div class="group">
-                <select>
+                <select name="category">
                   <option default disabled selected value="">Select a Category</option>
                   <option value="1">Value 1</option>
                   <option value="2">Value 2</option>
@@ -63,13 +43,13 @@
                 <label for="select" class="control-label"></label><i class="bar1"></i>
               </div>
               <div class="group">
-                <input type="text" name="input_title" required>
+                <input type="text" name="input_title" required name="title">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Title - What are you offering?</label>
               </div>
               <div class="group">
-                <input type="text" name="input_location" required>
+                <input type="text" name="input_location" required name="location">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Location</label>
@@ -77,22 +57,22 @@
             </div>
             <div class="form-group-2">
               <div class="form-group">
-                <textarea type="text" rows="5" class="form-control" placeholder="Item Description" required></textarea>
+                <textarea type="text" name="input_description" rows="5" class="form-control" placeholder="Item Description" required></textarea>
                 <div class="d-flex justify-content-between">
                   <div class="inline-block-card text-center p-2">
-                    <img src="assets/imgs/plus.png" alt="Add item">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
                     <p class="text-center">Image</p>
-                    <input type="file" name="myfile1">
+                    <input type="file" name="myfile1" name="image1">
                   </div>
                   <div class="inline-block-card text-center p-2">
-                    <img src="assets/imgs/plus.png" alt="Add item">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
                     <p class="text-center">Image</p>
-                    <input type="file" name="myfile2">
+                    <input type="file" name="myfile2" name="image2">
                   </div>
                   <div class="inline-block-card text-center p-2">
-                    <img src="assets/imgs/plus.png" alt="Add item">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
                     <p class="text-center">Image</p>
-                    <input type="file" name="myfile3">
+                    <input type="file" name="myfile3" name="image3">
                   </div>
                 </div>
               </div>
@@ -119,8 +99,8 @@
           </p>
           <div id="step_1_picture" class="text-right">
             <picture>
-              <source srcset="./assets/imgs/Swaprs_shape02.png" type="image/png">
-              <img width="186px" class="col-img  aos-animate" src="./assets/imgs/Swaprs_shape02.png"
+              <source srcset="{% static '/assets/imgs/Swaprs_shape02.png' %}" type="image/png">
+              <img width="186px" class="col-img  aos-animate" src="{% static '/assets/imgs/Swaprs_shape02.png' %}"
                 alt="Improve Your in-Store Experience">
             </picture>
           </div>
@@ -131,17 +111,18 @@
             This is optional but will help you see more relevant content in our marketplace.
             Add as many as you want.
           </p>
-          <form method="POST" action="#">
+          <form method="POST" action="/products/onboarding_part2">
+            {% csrf_token %}
             <div class="row pl-3">
               <div class="form-group-1">
                 <div class="group">
-                  <input type="text" name="input_item" required>
+                  <input type="text" name="input_item" required name="ty_pe">
                   <span class="highlight"></span>
                   <span class="bar"></span>
                   <label>Item or Service?</label>
                 </div>
                 <div class="group">
-                  <select>
+                  <select name="category">
                     <option default disabled selected value="">Select a Category</option>
                     <option value="1">Value 1</option>
                     <option value="2">Value 2</option>
@@ -151,13 +132,13 @@
               </div>
               <div class="form-group-2">
                 <div class="group">
-                  <input type="text" name="input_title" required>
+                  <input type="text" name="input_title" required name="title">
                   <span class="highlight"></span>
                   <span class="bar"></span>
                   <label>Title / Key words (e.g. Bicycle)</label>
                 </div>
                 <div class="group">
-                  <input type="text" name="input_location" required>
+                  <input type="text" name="input_location" required name="location">
                   <span class="highlight"></span>
                   <span class="bar"></span>
                   <label>Location</label>
@@ -172,26 +153,20 @@
           </form>
         </div>
       </div>
-      <div class="text-center next-button">
-        <a class="btn btn-primary-cust" href="page3.html">START SWAPPING</a>
+      <div class="text-center next-button" id="part3">
+        <a class="btn btn-primary-cust" href="/products/">START SWAPPING</a>
         <p class="upload-info">You can always edit your items and wishes later</p>
       </div>
     </div>
     <div class="text-center" style="margin-top: 172px; padding-bottom:80px;">
       <picture>
-        <!-- <source srcset="./assets/images/webp/section_2.webp" type="image/webp"> -->
-        <source srcset="./assets/imgs/SwaprsLogo_mid@2x.png" type="image/png">
-        <img height="96px" class="col-img  aos-animate" src="./assets/imgs/SwaprsLogo_mid@2x.png"
+        <!-- <source srcset="/static/assets/images/webp/section_2.webp' %}" type="image/webp"> -->
+        <source srcset="{% static '/assets/imgs/SwaprsLogo_mid@2x.png' %}" type="image/png">
+        <img height="96px" class="col-img  aos-animate" src="{% static '/assets/imgs/SwaprsLogo_mid@2x.png' %}"
           alt="Improve Your in-Store Experience">
       </picture>
     </div>
   </section>
-
-
-  <footer class="d-flex justify-content-center align-items-center">
-    <p class="my-0">&copy; SWAPRS LTD. 2019. All rights reserved. Company Number: <a class="link"
-        href="tel:12310340">12310340</a></p>
-  </footer>
+{% include 'partials/_footer.html' %}
 </body>
-
-</html>
+  {% endblock %}

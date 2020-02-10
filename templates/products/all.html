@@ -1,42 +1,100 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+    <body id="page_5">
 
-
-
-{% block content %}
-
-<div class='row'>
-    <div class='col-xs-12'>
-        <h1>Products</h1>
+  {% include 'partials/_navbar_user.html' %}
+ <header class="container px-0">
+    <div class="d-flex flex-row justify-content-between align-items-baseline">
+      <h1 class="heading-primary" style="margin-bottom: 63px;">Hi, {{ user.username }}</h1>
+      <a href="settings_preferences.html" class="link text-secondary">Settings & Preferences</a>
     </div>
-</div>
+    <p class="heading-info" style="margin-bottom: 38px;">We’re getting ready to launch! Soon, you will be able to search
+      for items to swap, <br>
+      message other users to make arrangements and much more.</p>
+    <p class="heading-info">We'll send you an email as soon as we're ready. </p>
+    <div class="row-cust" style="padding-top: 22px;">
+      <!-- ===================== Column 1 - Left ===================== -->
+      <div class="col-cust-1">
+        <div class="d-flex flex-row justify-content-between align-items-baseline">
+          <p class="heading-info">Your Items</p>
+          <a href="/products/add/" class="link text-secondary">&plus; New Item</a>
+        </div>
 
+        <div class="item-cards">
 
-<div class='row'>
-{% for product in products %}
-    
-   <div class='col-sm-4' style='text-align: center;'>
-    {% for image in product.productimage_set.all %}
-        {% if image.featured_image %}
-         <a href="{% url "single_product" product.slug %}">
-            <img  class="img-responsive" src='{{ image.image.url }}' style='max-height:150px;margin: 0 auto;' />
-         </a>
-        {% endif %}
-        {% endfor %}
-    <a href="{% url "single_product" product.slug %}">{{ product }}</a>{% if product.category_set.all %}, {% if product.category_set.all|length == 1 %}Category{% else %}Categories{%endif%}:
-   {% for item in product.category_set.all %}
-   <a href="{{ item.get_absolute_url }}">{{ item }}</a> 
-{% endfor %}
-{% endif %}
-   </a>
-   
-   </div>
-    {% cycle '' '' '</div><hr/><div class="row">'%}
+          {% for product in products %}
+
+          <!-- ========================== Card Begin ========================== -->
+          <div class="card w-100">
+            <div class="col-img">
+              <div class="img-holder">
+                <img  class="img-responsive" src='{{ product.image1.url }}' style='max-height:150px;margin: 0 auto;' />
+              </div>
+            </div>
+            <div class="col-info">
+              <p class="card-heading">{{ product.title }}</p>
+              <p class="card-info">{{ product.ty_pe }}</p>
+              <p class="card-info">{{ product.category }}</p>
+              <p class="card-info mb-0">{{ product.location }}</p>
+            </div>
+            <div class="col-buttons">
+              <a href="{% url "edit_product" product.slug %}" class="link">EDIT</a>
+              <a href="#" class="link" data-toggle="modal" data-target="modal1">DELETE</a>
+            </div>
+          </div>
+          <!-- ========================== Card End ========================== -->
+
+    {% endfor %}
+     </div>
+      </div>
+
+      <!-- ===================== Column 2 - Right ===================== -->
+      <div class="col-cust-3">
+        <div class="d-flex flex-row justify-content-between align-items-baseline">
+          <p class="heading-info">Your Wishes</p>
+          <a href="/products/add-wish/" class="link text-secondary">&plus; New Wish</a>
+        </div>
+
+        <div class="item-cards">
+          {% for product in wishes %}
+
+          <!-- ========================== Card Begin ========================== -->
+          <div class="card w-100">
+            <div class="col-img">
+              <div class="img-holder">
+                <img  class="img-responsive" src='{{ product.image1.url }}' style='max-height:150px;margin: 0 auto;' />
+              </div>
+            </div>
+            <div class="col-info">
+              <p class="card-heading">{{ product.title }}</p>
+              <p class="card-info">{{ product.ty_pe }}</p>
+              <p class="card-info">{{ product.category }}</p>
+              <p class="card-info mb-0">{{ product.location }}</p>
+            </div>
+            <div class="col-buttons">
+              <a href="{% url "edit_wish" product.slug %}" class="link">EDIT</a>
+              <a href="#" class="link" data-toggle="modal" data-target="modal1">DELETE</a>
+            </div>
+          </div>
+          <!-- ========================== Card End ========================== -->
+
     {% endfor %}
 
- </div>
-    
-    
-    
+        </div>
+
+      </div>
+    </div>
+    <div class="text-center" style="margin-top: 107px; padding-bottom:50px;">
+      <picture>
+        <source srcset="{% static '/assets/imgs/SwaprsLogo_mid@2x.png' %}" type="image/png">
+        <img height="96px" class="col-img  aos-animate" src="{% static '/assets/imgs/SwaprsLogo_mid@2x.png' %}"
+          alt="Improve Your in-Store Experience">
+      </picture>
+    </div>
+  </header>
+{% include 'partials/_footer.html' %}
+</body>
     
     
 {% endblock %}

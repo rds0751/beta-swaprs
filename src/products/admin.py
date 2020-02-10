@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Category, ProductImage, Tag, CategoryImage, Featured
+from .models import Product, Category, ProductImage, Tag, CategoryImage, Featured, Wish
 
 class FeaturedProductsAdmin(admin.ModelAdmin):
     class Meta:
@@ -23,26 +23,17 @@ class ProductImageInline(admin.TabularInline):
     
 class ProductAdmin(admin.ModelAdmin):
     save_on_top = True
-    list_display = ('__str__', 'description', 'categories', 'live_link',)
+    list_display = ('__str__', 'description', 'category', 'live_link',)
     inlines = [TagInline, ProductImageInline]
     search_fields = ['title', 'description', 'category__title', 'category__description', 'tag__tag']
     list_filter = ['timestamp', 'updated']
     list_editable = ['description',]
     prepopulated_fields = {"slug": ('title',)}
-    readonly_fields = ['categories', 'live_link', 'timestamp', 'updated',]
+    readonly_fields = ['category', 'live_link', 'timestamp', 'updated',]
     
     class Meta:
         model = Product
        
-
-    def categories(self, obj):
-        cat = []
-        for i in obj.category_set.all():
-            link = "<a href='/admin/products/category/"+ str(i.id) + "/'>" + i.title + "</a>"
-            cat.append(link)
-        return ", ".join(cat)
-    
-    categories.allow_tags = True
     
     def live_link(self, obj):
         link = "<a href='/products/"+ str(obj.slug) + "/'>" + obj.title + "</a>"
@@ -51,6 +42,16 @@ class ProductAdmin(admin.ModelAdmin):
     live_link.allow_tags = True
 
 admin.site.register(Product, ProductAdmin)
+
+
+class WishAdmin(admin.ModelAdmin):
+    save_on_top = True
+    list_display = ('__str__', 'category',)
+    
+    class Meta:
+        model = Wish
+
+admin.site.register(Wish, WishAdmin)
 
 
    

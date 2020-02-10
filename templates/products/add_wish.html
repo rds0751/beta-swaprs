@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+
+<body id="page_3">
+ {% include 'partials/_navbar_user.html' %}
+
+  <header class="container">
+    <div class="row-cust">
+      <div class="col-cust-1">
+        <div id="step_1_picture" class="text-right" style="margin-top: 120px; margin-right: 26px;">
+          <picture>
+            <source srcset="{% static '/assets/imgs/Swaprs_shape02.png' %}" type="image/png">
+            <img width="186px" class="col-img  aos-animate" src="{% static '/assets/imgs/Swaprs_shape02.png' %}"
+              alt="Improve Your in-Store Experience">
+          </picture>
+        </div>
+      </div>
+      <div class="col-cust-2">
+        <h1 class="heading-primary">Add new wish(es)</h1>
+        <p class="heading-info">Select any item or service you are looking for. <br>
+          This is optional but will help you see more relevant content in our marketplace.
+        </p>
+        <form method="POST" action="/products/add-wish/">
+          {% csrf_token %}
+          <div class="row pl-3">
+            <div class="form-group-1">
+              <div class="group">
+                <input type="text" name="input_item" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Item or Service?</label>
+              </div>
+              <div class="group">
+                <select name="category">
+                  <option default disabled selected value="">Select a Category</option>
+                  <option value="1">Value 1</option>
+                  <option value="2">Value 2</option>
+                </select>
+                <label for="select" class="control-label"></label><i class="bar1"></i>
+              </div>
+            </div>
+            <div class="form-group-2">
+              <div class="group" style="margin-bottom: 24px;">
+                <input type="text" name="input_title" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Title / Key words (e.g. Bicycle)</label>
+              </div>
+              <div class="group">
+                <input type="text" name="input_location" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Location</label>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <button class="btn btn-scondary-cust" type="submit">Upload Wish</button>
+            <p class="upload-info">Your wish has been uploaded.<br>
+              Upload another one or continue.</p>
+          </div>
+        </form>
+        <div class="next-button text-left" style="width: 388px; margin: 120px 0 75px 0;">
+          <a class="btn btn-primary-cust" href="/products/">DONE</a>
+          <p class="upload-info text-center">You can always edit your items and wishes later</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+{% include 'partials/_footer.html' %}
+</body>
+{% endblock %}

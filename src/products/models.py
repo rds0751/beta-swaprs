@@ -18,31 +18,36 @@ def download_loc(instance, filename):
     else:
         return "%s/download/%s" %("default", filename)
 
-class Wish(object):
-    user = models.ForeignKey(User, null=True, blank=True, related_name='productuser', on_delete=models.CASCADE)
+class Wish(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, related_name='wishuser', on_delete=models.CASCADE)
     location = models.CharField(max_length=80, null=True, blank=True)
     ty_pe = models.CharField(max_length=20, null=True, blank=True)
     keywords = models.CharField(max_length=180)
     category = models.CharField(max_length=180)
+    slug = models.SlugField(unique=True, null=True, blank=True)
     """docstring for Wish"""
     def __str__(self):
-        return str(self.title)        
+        return str(self.keywords)
+
+    def get_absolute_url(self, ):
+        return reverse('single_wish', args=[self.slug])        
 
 class Product(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, related_name='productuser', on_delete=models.CASCADE)
     title = models.CharField(max_length=180)
     description = models.CharField(max_length=500)
     # download = models.FileField(upload_to=download_loc, storage=FileSystemStorage(location=protected_loc), null=True)
-    image1 = models.ImageField(upload_to="products/image/", null=True, blank=True)
-    image2 = models.ImageField(upload_to="products/image/", null=True, blank=True)
-    image3 = models.ImageField(upload_to="products/image/", null=True, blank=True)
+    image1 = models.FileField(upload_to="products/image/", null=True, blank=True)
+    image2 = models.FileField(upload_to="products/image/", null=True, blank=True)
+    image3 = models.FileField(upload_to="products/image/", null=True, blank=True)
     location = models.CharField(max_length=80, null=True, blank=True)
     ty_pe = models.CharField(max_length=20, null=True, blank=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     swapped = models.BooleanField(default=0)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     active = models.BooleanField(default=True)
+    category = models.CharField(max_length=90, null=True, blank=True)
     
     def __str__(self):
         return str(self.title)
@@ -93,7 +98,6 @@ class Tag(models.Model):
 
 
 class Category(models.Model):
-    products = models.ManyToManyField(Product)
     title = models.CharField(max_length=120)
     description = models.CharField(max_length=500)
     slug = models.SlugField()

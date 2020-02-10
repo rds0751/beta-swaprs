@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+
+<body id="page_3">
+  {% include 'partials/_navbar_user.html' %}
+
+  <header class="container">
+    <div class="row-cust">
+      <div class="col-cust-1">
+        <div id="step_1_picture" class="text-right" style="margin-top: 200px; margin-right: 26px;">
+          <picture>
+            <source srcset="{% static '/assets/imgs/Swaprs_shape01@3x.png' %}" type="image/png">
+            <img width="186px" class="col-img  aos-animate" src="{% static '/assets/imgs/Swaprs_shape01@3x.png' %}"
+              alt="Improve Your in-Store Experience">
+          </picture>
+        </div>
+      </div>
+      <div class="col-cust-2">
+        <h1 class="heading-primary">Add new item(s)</h1>
+        <p class="heading-info">Upload any item or service you wish to offer.
+          <br>
+          Add as many as you want.</p>
+        <form method="POST" action="#">
+          {% csrf_token %}
+          <div class="row pl-3">
+            <div class="form-group-1">
+              <div class="group">
+                <input type="text" name="input_item" required name="ty_pe">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Item or Service?</label>
+              </div>
+              <div class="group">
+                <select name="category">
+                  <option default disabled selected value="">Select a Category</option>
+                  <option value="1">Value 1</option>
+                  <option value="2">Value 2</option>
+                </select>
+                <label for="select" class="control-label"></label><i class="bar1"></i>
+              </div>
+              <div class="group">
+                <input type="text" name="input_title" required name="title">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Title - What are you offering?</label>
+              </div>
+              <div class="group">
+                <input type="text" name="input_location" required name="location">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Location</label>
+              </div>
+            </div>
+            <div class="form-group-2">
+              <div class="form-group">
+                <textarea type="text" name="input_description" rows="5" class="form-control" placeholder="Item Description" required></textarea>
+                <div class="d-flex justify-content-between">
+                  <div class="inline-block-card text-center p-2">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
+                    <p class="text-center">Image</p>
+                    <input type="file" name="myfile1" name="image1">
+                  </div>
+                  <div class="inline-block-card text-center p-2">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
+                    <p class="text-center">Image</p>
+                    <input type="file" name="myfile2" name="image2">
+                  </div>
+                  <div class="inline-block-card text-center p-2">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
+                    <p class="text-center">Image</p>
+                    <input type="file" name="myfile3" name="image3">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <button class="btn btn-scondary-cust" type="submit">Upload Item</button>
+            <p class="upload-info">Your item has been uploaded.<br>
+              Upload another one or continue.</p>
+          </div>
+        </form>
+        <div class="next-button text-left" style="width: 388px; margin: 120px 0 75px 0;">
+          <a class="btn btn-primary-cust" href="#">DONE</a>
+          <p class="upload-info text-center">You can always edit your items and wishes later</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+{% include 'partials/_footer.html' %}
+</body>
+{% endblock %}

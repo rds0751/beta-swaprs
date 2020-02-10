@@ -55,45 +55,46 @@
         <p class="heading-info">Select any item or service you are looking for. <br>
           This is optional but will help you see more relevant content in our marketplace.
         </p>
-        <form method="POST" action="#">
-          <div class="row pl-3">
-            <div class="form-group-1">
-              <div class="group">
-                <input type="text" name="input_item" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Item or Service?</label>
+<form method="POST" action="/products/onboarding_part2">
+            {% csrf_token %}
+            <div class="row pl-3">
+              <div class="form-group-1">
+                <div class="group">
+                  <input type="text" name="input_item" required name="ty_pe">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Item or Service?</label>
+                </div>
+                <div class="group">
+                  <select name="category">
+                    <option default disabled selected value="">Select a Category</option>
+                    <option value="1">Value 1</option>
+                    <option value="2">Value 2</option>
+                  </select>
+                  <label for="select" class="control-label"></label><i class="bar1"></i>
+                </div>
               </div>
-              <div class="group">
-                <select>
-                  <option default disabled selected value="">Select a Category</option>
-                  <option value="1">Value 1</option>
-                  <option value="2">Value 2</option>
-                </select>
-                <label for="select" class="control-label"></label><i class="bar1"></i>
+              <div class="form-group-2">
+                <div class="group">
+                  <input type="text" name="input_title" required name="title">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Title / Key words (e.g. Bicycle)</label>
+                </div>
+                <div class="group">
+                  <input type="text" name="input_location" required name="location">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Location</label>
+                </div>
               </div>
             </div>
-            <div class="form-group-2">
-              <div class="group" style="margin-bottom: 24px;">
-                <input type="text" name="input_title" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Title / Key words (e.g. Bicycle)</label>
-              </div>
-              <div class="group">
-                <input type="text" name="input_location" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Location</label>
-              </div>
+            <div class="text-right">
+              <button class="btn btn-scondary-cust" type="submit">Upload Item</button>
+              <p class="upload-info">Your wish has been uploaded.<br>
+                Upload another one or continue.</p>
             </div>
-          </div>
-          <div class="text-right">
-            <button class="btn btn-scondary-cust" type="submit">Upload Wish</button>
-            <p class="upload-info">Your wish has been uploaded.<br>
-              Upload another one or continue.</p>
-          </div>
-        </form>
+          </form>
         <div class="next-button text-left" style="width: 388px; margin: 120px 0 75px 0;">
           <a class="btn btn-primary-cust" href="#">DONE</a>
           <p class="upload-info text-center">You can always edit your items and wishes later</p>

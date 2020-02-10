@@ -12,8 +12,8 @@ from django.template.defaultfilters import slugify
 
 from src.cart.models import Cart
 
-from .models import Product, Category, ProductImage
-from .forms import ProductForm, ProductImageForm
+from .models import Product, Category, Wish
+from .forms import ProductForm, WishForm
 
 def check_product(user, product):
     try:
@@ -43,63 +43,114 @@ def download_product(request, slug, filename):
         
     #return render_to_response("products/single.html", locals(), context_instance=RequestContext(request))
 
+def onboarding1(request):
+    if request.method == 'POST':
+        user = request.user
+        title = request.POST['input_title']
+        location = request.POST['input_location']
+        category = request.POST['category']
+        description = request.POST['input_description']
+        image1 = request.POST['myfile1']
+        image2 = request.POST['myfile2']
+        image3 = request.POST['myfile3']
+        ty_pe = request.POST['input_item']
+        slug = slugify(request.POST['input_title'])
+        active = True
+        product = Product(user=user, title=title, category=category, description=description, image1=image1, image2=image2, image3=image3, ty_pe=ty_pe, slug=slug, location=location, active=True)
+        product.save()
+        return HttpResponseRedirect('/products/onboarding_part2/#part2')
+    
+    context = {
+    }
+
+    return render(request, "products/onboarding.html",context)
+
+def onboarding2(request):
+    
+        
+    if request.method == 'POST':
+        
+        user = request.user
+        location = request.POST['input_location']
+        ty_pe = request.POST['input_item']
+        keywords = request.POST['input_title']
+        category = request.POST['category']
+        slug = slugify(request.POST['input_title'])
+        product = Wish(location=location, ty_pe=ty_pe, keywords=keywords, category=category)
+        product.save()
+        return HttpResponseRedirect('/products/onboarding_part2/#part3')
+    
+    context = {
+    }
+
+    return render(request, "products/onboarding.html",context)
 
 
 def list_all(request):
-    products = Product.objects.filter(active=True)
+    products = Product.objects.filter(user=request.user)
+    wishes = Wish.objects.filter(user=request.user)
     context = {
         "products": products,
+        "wishes": wishes,
+        "user": request.user,
     }
     return render(request, "products/all.html", context)
 
 def add_product(request):
-    
-    form = ProductForm(request.POST or None)
-        
-    if form.is_valid():
-        product = form.save(commit=False)
-        product.user = request.user
-        product.slug = slugify(form.cleaned_data['title'])
-        product.active = True
+    if request.method == 'POST':
+        user = request.user
+        title = request.POST['input_title']
+        location = request.POST['input_location']
+        category = request.POST['category']
+        description = request.POST['input_description']
+        image1 = request.POST['myfile1']
+        image2 = request.POST['myfile2']
+        image3 = request.POST['myfile3']
+        ty_pe = request.POST['input_item']
+        slug = slugify(request.POST['input_title'])
+        active = True
+        product = Product(user=user, title=title, category=category, description=description, image1=image1, image2=image2, image3=image3, ty_pe=ty_pe, slug=slug, location=location, active=True)
         product.save()
-        return HttpResponseRedirect('/products/%s'%(product.slug))
+        return HttpResponseRedirect('/products/')
     
     context = {
-        "form": form,
     }
 
-    return render(request, "products/edit.html",context)
+    return render(request, "products/add_product.html",context)
 
 def add_wish(request):
     
-    form = WishForm(request.POST or None)
+    if request.method == 'POST':
         
-    if form.is_valid():
-        product = form.save(commit=False)
-        product.user = request.user
+        user = request.user
+        location = request.POST['input_location']
+        ty_pe = request.POST['input_item']
+        keywords = request.POST['input_title']
+        category = request.POST['category']
+        slug = slugify(request.POST['input_title'])
+        product = Wish(slug=slug, user=user, location=location, ty_pe=ty_pe, keywords=keywords, category=category)
         product.save()
-        return HttpResponseRedirect('/products/%s'%(product.slug))
+        return HttpResponseRedirect('/products/')
     
     context = {
-        "form": form,
     }
 
-    return render(request, "products/edit.html",context)
+    return render(request, "products/add_wish.html",context)
 
 
 
 def edit_product(request, slug):
     instance = Product.objects.get(slug=slug) #this is the product instance
     if request.user == instance.user:
-        form = ProductForm(request.POST or None, instance=instance)
+        form = ProductForm(request.POST or None, request.FILES, instance=instance)
         
         if form.is_valid():
             product_edit = form.save(commit=False)
             
             product_edit.save()
         
-        context = {"form": form}
-        return render(request, "products/edit.html", context)
+        context = {"form": form, 'instance':instance}
+        return render(request, "products/edit_product.html", context)
     else:
         raise Http404
 
@@ -107,15 +158,17 @@ def edit_product(request, slug):
 def edit_wish(request, slug):
     instance = Wish.objects.get(slug=slug) #this is the product instance
     if request.user == instance.user:
+
         form = WishForm(request.POST or None, instance=instance)
         
         if form.is_valid():
+            print('hago')
             product_edit = form.save(commit=False)
             
             product_edit.save()
-        
-        context = {"form": form}
-        return render(request, "products/edit.html", context)
+
+        context = {"form": form, 'instance':instance}
+        return render(request, "products/edit_wish.html", context)
     else:
         raise Http404
 

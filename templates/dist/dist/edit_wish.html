@@ -53,33 +53,30 @@
       <div class="col-cust-2">
         <h1 class="heading-primary">Edit wish - "Title"</h1>
         <p class="heading-info">More precise information will help you see more relevant content in our marketplace.</p>
-        <form method="POST" action="#">
+        <form method="POST" action="">
+          {% csrf_token %}
           <div class="row pl-3">
             <div class="form-group-1">
               <div class="group">
-                <input type="text" name="input_item" required>
+                {{ forms.ty_pe }}
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Item or Service?</label>
+                <label>Item or Service?</label> 
               </div>
               <div class="group">
-                <select>
-                  <option default disabled selected value="">Select a Category</option>
-                  <option value="1">Value 1</option>
-                  <option value="2">Value 2</option>
-                </select>
+                {{ forms.category }}
                 <label for="select" class="control-label"></label><i class="bar1"></i>
               </div>
             </div>
             <div class="form-group-2">
               <div class="group" style="margin-bottom: 24px;">
-                <input type="text" name="input_title" required>
+                {{ forms.title }}
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Title / Key words (e.g. Bicycle)</label>
               </div>
               <div class="group">
-                <input type="text" name="input_location" required>
+                {{ forms.location }}
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Location</label>

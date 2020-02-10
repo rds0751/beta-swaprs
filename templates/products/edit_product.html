@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+  <body id="page_3">
+ {% include 'partials/_navbar_user.html' %}
+  <header class="container">
+    <div class="row-cust">
+      <div class="col-cust-1">
+        <div id="step_1_picture" class="text-right" style="margin-top: 200px; margin-right: 26px;">
+          <picture>
+            <source srcset="{% static '/assets/imgs/Swaprs_shape01@3x.png' %}" type="image/png">
+            <img width="186px" class="col-img  aos-animate" src="{% static '/assets/imgs/Swaprs_shape01@3x.png' %}"
+              alt="Improve Your in-Store Experience">
+          </picture>
+        </div>
+      </div>
+      <div class="col-cust-2">
+        <h1 class="heading-primary" style="margin-bottom: 80px;">Edit item - {{ instance.title }}</h1>
+        <form method="POST" enctype="multipart/form-data" action="">
+        	{% csrf_token %}
+          <div class="row pl-3">
+            <div class="form-group-1">
+              <div class="group">
+                {{ form.ty_pe }}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Item or Service?</label>
+              </div>
+              <div class="group">
+                {{ form.category }}
+                <label for="select" class="control-label"></label><i class="bar1"></i>
+              </div>
+              <div class="group">
+                {{ form.title }}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Title - What are you offering?</label>
+              </div>
+              <div class="group">
+                {{ form.location }}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Location</label>
+              </div>
+            </div>
+            <div class="form-group-2">
+              <div class="form-group">
+                {{ form.description }}
+                <div class="d-flex justify-content-between">
+                  <div class="inline-block-card text-center p-2">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
+                    <p class="text-center">Image</p>
+                    {{ form.image1 }}
+                  </div>
+                  <div class="inline-block-card text-center p-2">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
+                    <p class="text-center">Image</p>
+                    {{ form.image2 }}
+                  </div>
+                  <div class="inline-block-card text-center p-2">
+                    <img src="{% static '/assets/imgs/plus.png' %}" alt="Add item">
+                    <p class="text-center">Image</p>
+                    {{ form.image3 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <button class="btn btn-scondary-cust" type="submit">Save Changes</button>
+            <p class="upload-info">Your changes have been saved.</p>
+          </div>
+        </form>
+        <div class="next-button text-center" style="width: 388px; margin-top: 120px;">
+          <a class="btn btn-primary-cust" href="/products/">DONE</a>
+        </div>
+        <p class="upload-info" style="margin-bottom: 75px; position: relative; left: -26px;">You can always edit your items again from the profile page.</p>
+      </div>
+    </div>
+  </header>
+
+ 
+{% include 'partials/_footer.html' %}
+</body>
+{% endblock %}
