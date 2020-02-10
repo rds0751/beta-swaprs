@@ -7,15 +7,15 @@
     <div class="container px-0">
       <a class="navbar-brand p-0" href="#">
         <picture>
-          <source srcset="/static/assets/imgs/SwaprsLogo_mid_2x.webp" type="image/webp">
-          <source srcset="/static/assets/imgs/SwaprsLogo_mid@2x.png" type="image/png">
-          <img height="60" class="col-img  aos-animate" src="/static/assets/imgs/SwaprsLogo_mid@2x.png"
+          <source srcset="{% static 'assets/imgs/SwaprsLogo_mid_2x.webp' %}" type="image/webp">
+          <source srcset="{% static 'assets/imgs/SwaprsLogo_mid@2x.png' %}" type="image/png">
+          <img height="60" class="col-img  aos-animate" src="{% static 'assets/imgs/SwaprsLogo_mid@2x.png' %}"
             alt="Improve Your in-Store Experience">
         </picture>
       </a>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <form class="form-inline" action="">
+          <form class="form-inline" action="/accounts/facebook/login.">
             <button type="submit" class="btn btn-scondary-cust mb-2">Login</button>
           </form>
         </li>
@@ -36,16 +36,16 @@
         </div>
         <div class="col-lg-7 mt-md-none">
           <picture>
-            <source srcset="/static/assets/imgs/Swaprs-illustration04.webp" type="image/webp">
-            <source srcset="/static/assets/imgs/Swaprs-illustration04.png" type="image/png">
-            <img width="100%" class="col-img  aos-animate" src="/static/assets/imgs/Swaprs-illustration04.png"
+            <source srcset="{% static 'assets/imgs/Swaprs-illustration04.webp' %}" type="image/webp">
+            <source srcset="{% static 'assets/imgs/Swaprs-illustration04.png' %}" type="image/png">
+            <img width="100%" class="col-img  aos-animate" src="{% static 'assets/imgs/Swaprs-illustration04.png' %}"
               alt="Improve Your in-Store Experience">
           </picture>
         </div>
       </div>
       <div class="container pl-0">
         <form method="" action="/accounts/facebook/login">
-          <button class="btn shadow px-4 btn-primary-cust" type="submit">CREATE ACCOUNT</button>
+          <button class="btn shadow px-4 btn-primary-cust" type="submit"><i class="fa fa-facebook-official" style="font-size: 20px;"></i>&nbsp; Sign up with Facebook</button>
         </form>
       </div>
     </div>
@@ -55,9 +55,9 @@
     <h1 class="text-center mb-0">Learn more about
       <span class="mx-2">
         <picture>
-          <source srcset="/static/assets/imgs/SwaprsLogo_mid_2x.webp" type="image/webp">
-          <source srcset="/static/assets/imgs/SwaprsLogo_mid@2x.png" type="image/png">
-          <img height="78" class="col-img  aos-animate" src="/static/assets/imgs/SwaprsLogo_mid@2x.png"
+          <source srcset="{% static 'assets/imgs/SwaprsLogo_mid_2x.webp' %}" type="image/webp">
+          <source srcset="{% static 'assets/imgs/SwaprsLogo_mid@2x.png' %}" type="image/png">
+          <img height="78" class="col-img  aos-animate" src="{% static 'assets/imgs/SwaprsLogo_mid@2x.png' %}"
             alt="Improve Your in-Store Experience">
         </picture>
       </span>
@@ -67,9 +67,9 @@
       <div class="row">
         <div class="col-lg-6 align-self-end mb-1 pr-3">
           <picture class="">
-            <source srcset="/static/assets/imgs/Swaprs-items.webp" type="image/webp">
-            <source srcset="/static/assets/imgs/Swaprs-items.png" type="image/png">
-            <img width="100%" class="col-img" src="/static/assets/imgs/Swaprs-items.png"
+            <source srcset="{% static 'assets/imgs/Swaprs-items.webp' %}" type="image/webp">
+            <source srcset="{% static 'assets/imgs/Swaprs-items.png' %}" type="image/png">
+            <img width="100%" class="col-img" src="{% static 'assets/imgs/Swaprs-items.png' %}"
               alt="Improve Your in-Store Experience">
           </picture>
         </div>
@@ -99,9 +99,9 @@
 
         <div style="margin-top: 100px; padding-bottom:110px;">
           <picture>
-            <!-- <source srcset="/static/assets/images/webp/section_2.webp" type="image/webp"> -->
-            <source srcset="/static/assets/imgs/SwaprsLogo_mid@2x.png" type="image/png">
-            <img height="96px" class="col-img  aos-animate" src="/static/assets/imgs/SwaprsLogo_mid@2x.png"
+            <!-- <source srcset="{% static 'assets/images/webp/section_2.webp' %}" type="image/webp"> -->
+            <source srcset="{% static 'assets/imgs/SwaprsLogo_mid@2x.png' %}" type="image/png">
+            <img height="96px" class="col-img  aos-animate" src="{% static 'assets/imgs/SwaprsLogo_mid@2x.png' %}"
               alt="Improve Your in-Store Experience">
           </picture>
         </div>
