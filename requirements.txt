@@ -59,7 +59,7 @@ Markdown==3.1.1
 msgpack==0.6.1
 oauthlib==3.1.0
 Paginator==0.5.1
-Pillow==5.2.0
+Pillow==8.1.1
 post==2019.4.13
 promise==2.2.1
 public==2019.4.13
