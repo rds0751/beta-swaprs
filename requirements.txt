@@ -90,7 +90,7 @@ suds-jurko==0.6
 Twisted==19.7.0
 txaio==18.8.1
 Unidecode==0.4.21
-urllib3==1.25.3
+urllib3==1.25.8
 whitenoise==4.1.4
 xmltodict==0.12.0
 zope.interface==4.6.0
