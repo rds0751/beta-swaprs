@@ -22,7 +22,7 @@ cryptography==2.7
 daphne==2.3.0
 defusedxml==0.6.0
 dj-database-url==0.5.0
-Django==2.1
+Django==2.2.24
 django-leaflet
 django-allauth==0.39.1
 django-anymail==6.1.0
