@@ -87,7 +87,7 @@ sorl-thumbnail==12.5.0
 sqlparse==0.3.0
 stripe==2.35.1
 suds-jurko==0.6
-Twisted==19.7.0
+Twisted==22.2.0
 txaio==18.8.1
 Unidecode==0.4.21
 urllib3==1.25.3
